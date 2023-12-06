@@ -4,3 +4,9 @@
 ## Kalau mau setup call Eka saja ya
 Edisi males bikin dokumentasi :)
 
+### Tech Stack
+- Typescript
+- Express
+- Prisma ORM
+- PostgreSQL
+
