@@ -10,11 +10,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  password String
+model Perusahaan {
+  id             String @id @default(uuid())
+  namaPerusahaan String
+  User           User[]
+}
+
+model User {
+  id                   String                 @id @default(uuid())
+  nama                 String
+  nrp                  Int                    @unique
+  password             String
+  perusahaan           Perusahaan             @relation(fields: [idPerusahaan], references: [id])
+  idPerusahaan         String
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  InfoFinance          InfoFinance[]
+  KalkulasiPengeluaran KalkulasiPengeluaran[]
+}
+
+model InfoFinance {
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [idUser], references: [id])
+  idUser    String
+  gaji      Float?
+  tabungan  Float?
+  pinjaman  Float?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model KalkulasiPengeluaran {
+  id          String   @id @default(uuid())
+  user        User     @relation(fields: [idUser], references: [id])
+  idUser      String
+  kebutuhan   Float?
+  bayarHutang Float?
+  investasi   Float?
+  sedekah     Float?
+  menabung    Float?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

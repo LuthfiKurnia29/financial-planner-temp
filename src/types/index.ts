@@ -1,11 +1,17 @@
 export interface IUser {
-  name: string;
-  email: string;
+  nama: string;
+  nrp: string;
   password: string;
 }
 
 export interface IUserResponse {
   id: string;
-  name: string;
-  email: string;
+  nama: string;
+  idPerusahaan: string;
 }
+
+export interface IPerusahaan {
+  namaPerusahaan: string;
+}
+
+

@@ -1,27 +1,48 @@
-import { IUser } from "../src/types";
+import { IPerusahaan, IUser } from "../src/types";
 import { _db } from "../src/utils/_db";
+
+function Perusahaan() : Array<IPerusahaan>
+{
+  return [
+    {
+      namaPerusahaan: "YKBUT"
+    },
+    {
+      namaPerusahaan: "MBUT"
+    },
+    {
+      namaPerusahaan: "GSI"
+    },
+    {
+      namaPerusahaan: "KAMAJU"
+    },
+    {
+      namaPerusahaan: "UT SCHOOL"
+    },
+  ]
+}
 
 function Users(): Array<IUser> {
   return [
     {
-      name: "Satrya",
-      email: "satrya@email.com",
+      nama: "Satrya",
+      nrp: "satrya@email.com",
       password: "satrya123",
     },
     {
-      name: "Eka",
-      email: "eka@gmail.com",
-      password: "eka123",
+      nama: "Luthfi",
+      nrp: "luthfi@email.com",
+      password: "luthfi123",
     },
   ];
 }
 
 async function seed() {
   await Promise.all(
-    Users().map((user) => {
-      return _db.users.create({ data: user });
+    Perusahaan().map((perusahaan) => {
+      return _db.perusahaan.create({ data: perusahaan })
     })
-  );
+    );
 }
 
 seed();
